@@ -19,7 +19,7 @@ for dir in os.listdir("wheels"):
 
     dir = normalize(dir)
     shutil.copytree(f"wheels/{dir}", f"dist/simple/{dir}")
-    index += f'<a href="/simple/{dir}/">{dir}</a>\n'
+    index += f'<a href="simple/{dir}/">{dir}</a>\n'
 
     page = f"<!DOCTYPE html><html><head><title>Links for {dir}</title></head><body><h1>Links for {dir}</h1>"
 
@@ -29,7 +29,7 @@ for dir in os.listdir("wheels"):
             while f.peek(1) != b"":
                 crypt_hash.update(f.read(16384))
         crypt_hash = crypt_hash.hexdigest()
-        page += f'<a href="/simple/{dir}/{file}#sha256={crypt_hash}">{file}</a><br>'
+        page += f'<a href="{file}#sha256={crypt_hash}">{file}</a><br>'
     page += "</body></html>"
     with open(f"dist/simple/{dir}/index.html", "w") as f:
         f.write(page)
