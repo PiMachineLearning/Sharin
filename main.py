@@ -19,7 +19,7 @@ for dir in os.listdir("wheels"):
 
     dir = normalize(dir)
     shutil.copytree(f"wheels/{dir}", f"dist/simple/{dir}")
-    index += f'<a href="simple/{dir}/">{dir}</a>\n'
+    index += f'<a href="{dir}/">{dir}</a>\n'
 
     page = f"<!DOCTYPE html><html><head><title>Links for {dir}</title></head><body><h1>Links for {dir}</h1>"
 
