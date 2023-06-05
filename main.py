@@ -1,11 +1,13 @@
-import os, shutil, re, hashlib, atexit
+import os, shutil, re, hashlib, atexit, time
 
 
 def normalize(name):
     return re.sub(r"[-_.]+", "-", name).lower()
 
+while os.path.exists("lock"):
+    time.sleep(60) # potential toctou
 open("lock", 'a').close()
-atexit.register(os.remove("lock")) # potential issues if two instances of Sharin run at the same time
+atexit.register(os.remove("lock")) 
 
 if os.path.exists("./dist"):
     shutil.rmtree("./dist")
