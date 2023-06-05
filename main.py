@@ -1,9 +1,11 @@
-import os, shutil, re, hashlib
+import os, shutil, re, hashlib, atexit
 
 
 def normalize(name):
     return re.sub(r"[-_.]+", "-", name).lower()
 
+open("lock", 'a').close()
+atexit.register(os.remove("lock")) # potential issues if two instances of Sharin run at the same time
 
 if os.path.exists("./dist"):
     shutil.rmtree("./dist")
