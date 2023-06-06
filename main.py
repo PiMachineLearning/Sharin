@@ -7,7 +7,7 @@ def normalize(name):
 while os.path.exists("lock"):
     time.sleep(60) # potential toctou
 open("lock", 'a').close()
-atexit.register(os.remove("lock")) 
+atexit.register(os.remove, "lock")
 
 if os.path.exists("./dist"):
     shutil.rmtree("./dist")
